@@ -3,6 +3,7 @@ using Autofac;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumXUnit.Driver;
+using SeleniumXUnit.Setting;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
@@ -12,19 +13,21 @@ namespace SeleniumXUnit
     {
         IWebDriver driver;
         private readonly IBrowserDriver browserDriver;
+        private readonly TestSetting testSetting;
 
-        public DriverFixtures(IBrowserDriver browserDriver)
+        public DriverFixtures(TestSetting testSetting,IBrowserDriver browserDriver)
         {
+            this.testSetting = testSetting;
             this.browserDriver = browserDriver;
             driver = GetWebDriver();
         }
 
         public IWebDriver Driver => driver;
-        private IWebDriver GetWebDriver(BrowserType browserType = BrowserType.Chrome)
+        private IWebDriver GetWebDriver()
         {
 
 
-            return browserType switch
+            return testSetting.BrowserType switch
             {
                 BrowserType.Chrome => browserDriver.GetChromeDriver(),
                 BrowserType.Firefox => browserDriver.GetFirefoxDriver(),

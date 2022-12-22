@@ -14,17 +14,12 @@ public class UnitTest2: IDisposable
 
 {
     IWebDriver driver;
-    IContainer container;
 
 
-    public UnitTest2()
+    public UnitTest2(IDriverFixtures driverFixtures)
     {
 
-        var builder = new ContainerBuilder();
-        builder.RegisterType<BrowserDriver>().As<IBrowserDriver>();
-        container = builder.Build();
-        var driverFixture = new DriverFixtures(container, BrowserType.Firefox);
-        driver = driverFixture.Driver;
+        driver = driverFixtures.Driver;
         driver.Navigate().GoToUrl(new Uri("http://localhost:5002/"));
     }
 
