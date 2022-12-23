@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1704.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumXUnit", "SeleniumXUnit\SeleniumXUnit.csproj", "{23BEF925-AAC3-4A8E-893E-B7CB389B6D74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EATestFramework", "SeleniumXUnit\EATestFramework.csproj", "{23BEF925-AAC3-4A8E-893E-B7CB389B6D74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EATestProject", "EATestProject\EATestProject.csproj", "{9434DC12-7213-46EE-8A2E-B021DFED0E42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{23BEF925-AAC3-4A8E-893E-B7CB389B6D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23BEF925-AAC3-4A8E-893E-B7CB389B6D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23BEF925-AAC3-4A8E-893E-B7CB389B6D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9434DC12-7213-46EE-8A2E-B021DFED0E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9434DC12-7213-46EE-8A2E-B021DFED0E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9434DC12-7213-46EE-8A2E-B021DFED0E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9434DC12-7213-46EE-8A2E-B021DFED0E42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
