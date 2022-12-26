@@ -10,7 +10,7 @@ namespace SeleniumXUnit
 		
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.UseWebDriverInitializer(BrowserType.Firefox);
+			services.UseWebDriverInitializer();
 			services.AddScoped<IDriverFixtures, DriverFixtures>();
 			services.AddScoped<IBrowserDriver, BrowserDriver>();
 		}

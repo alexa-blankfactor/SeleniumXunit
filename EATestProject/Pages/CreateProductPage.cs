@@ -1,4 +1,5 @@
 ﻿using System;
+using EATestFramework.Extensions;
 using EATestProject.Model;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -24,10 +25,9 @@ namespace EATestProject.Pages
         public void EnterProductDetails(Product product)
         {
             textname.SendKeys(product.Name);
-            textDescription.SendKeys(product.Description);
+            textDescription.ClearAndEnterText(product.Description);
             textPrice.SendKeys(product.Price.ToString());
-            SelectElement select = new SelectElement(ddlProductType);
-            select.SelectByText(product.ProductType.ToString());
+            ddlProductType.SelectDropDownByText(product.ProductType.ToString());
             btnCreate.Submit();
 
         }

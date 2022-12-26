@@ -9,7 +9,7 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumXUnit
 {
-    public class DriverFixtures : IDriverFixtures
+    public class DriverFixtures : IDriverFixtures,IDisposable
     {
         IWebDriver driver;
         private readonly IBrowserDriver browserDriver;
@@ -20,6 +20,7 @@ namespace SeleniumXUnit
             this.testSetting = testSetting;
             this.browserDriver = browserDriver;
             driver = GetWebDriver();
+            driver.Navigate().GoToUrl(testSetting.ApplicationUrl);
         }
 
         public IWebDriver Driver => driver;

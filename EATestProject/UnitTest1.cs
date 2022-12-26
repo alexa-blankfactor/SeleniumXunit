@@ -1,43 +1,36 @@
-﻿using EATestProject.Pages;
+﻿using AutoFixture.Xunit2;
+using EATestProject.Pages;
+using FluentAssertions;
 using OpenQA.Selenium;
 using SeleniumXUnit;
 
 namespace EATestProject;
 
-public class UnitTest1 :IDisposable
+public class UnitTest1 
 {
 
     IWebDriver driver;
     private readonly IHomePage homePage;
     private readonly ICreateProductPage createProductPage;
+    private readonly IDetailsProductPage detailsProductPage;
 
 
-    public UnitTest1(IDriverFixtures driverFixtures,IHomePage homePage, ICreateProductPage createProductPage)
+    public UnitTest1(IHomePage homePage, ICreateProductPage createProductPage,IDetailsProductPage detailsProductPage)
     { 
         this.homePage = homePage;
         this.createProductPage = createProductPage;
-        driver = driverFixtures.Driver;
-        driver.Navigate().GoToUrl(new Uri("http://localhost:5002/"));
+        this.detailsProductPage = detailsProductPage;
     }
 
-    [Fact]
-    public void Test1()
+    [Theory,AutoData]
+    public void Test1(Model.Product product)
     {
-       
         homePage.CreateProduct();
-        createProductPage.EnterProductDetails(new Model.Product{
-            Name= "AutoProduct",
-            Description="AutoDescription",
-            Price=100,
-            ProductType=Constans.ProductType.PERIPHARALS
-
-        });
+        createProductPage.EnterProductDetails(product);
+        homePage.PerformClickOnSpecialValue(product.Name, "Details");
+        product.Should().BeEquivalentTo(detailsProductPage.GetProduct(), options => options.Excluding(product=>product.Id));
 
     }
 
-    void IDisposable.Dispose()
-    {
-        driver.Quit();
-
-    }
+    
 }

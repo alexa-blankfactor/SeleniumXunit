@@ -8,6 +8,8 @@ namespace SeleniumXUnit.Setting
 		}
 
 		public BrowserType BrowserType { get; set; }
+		public Uri ApplicationUrl  { get; set; }
+		public int TimeOutInterval { get; set; }
 	}
 }
 
