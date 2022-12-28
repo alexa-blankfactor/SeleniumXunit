@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SeleniumXUnit\EATestFramework.csproj" />
+    <ProjectReference Include="..\ProductAPI\ProductAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
