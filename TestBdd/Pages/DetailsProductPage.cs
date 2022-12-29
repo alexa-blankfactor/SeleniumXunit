@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using SeleniumXUnit;
+using ProductAPI.Data;
 
 namespace TestBdd.Pages
 {
@@ -18,13 +19,13 @@ namespace TestBdd.Pages
         IWebElement ddlProductType => driver.FindElement(By.Id("ProductType"));
 
 
-        public Model.Product GetProduct() {
+        public Product GetProduct() {
 
-            return new Model.Product {
+            return new Product {
                 Name= textname.Text,
                 Description= textDescription.Text,
                 Price = int.Parse(textPrice.Text),
-                ProductType= Enum.Parse<Constans.ProductType>(ddlProductType.Text)
+                ProductType= (ProductType)Enum.Parse<Constans.ProductType>(ddlProductType.Text)
             };
 
         }

@@ -1,4 +1,4 @@
-﻿using TestBdd.Model;
+﻿using ProductAPI.Data;
 
 namespace TestBdd.Pages
 {

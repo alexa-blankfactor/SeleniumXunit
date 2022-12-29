@@ -1,16 +1,16 @@
 ﻿using System;
 using EATestFramework.Extensions;
-using ProductAPI.Data;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+using ProductAPI.Data;
 using SeleniumXUnit;
+using TestBdd.Drivers;
 
 namespace TestBdd.Pages
 {
-    public class CreateProductPage : ICreateProductPage
+    public class EditProductPage : IEditProductPage
     {
         private readonly IWebDriver driver;
-        public CreateProductPage(IDriverFixtures driverFixtures)
+        public EditProductPage(IDriverFixtures driverFixtures)
         {
             this.driver = driverFixtures.Driver;
         }
@@ -19,17 +19,15 @@ namespace TestBdd.Pages
         IWebElement textDescription => driver.FindElement(By.Id("Description"));
         IWebElement textPrice => driver.FindElement(By.Id("Price"));
         IWebElement ddlProductType => driver.FindElement(By.Id("ProductType"));
-        IWebElement btnCreate => driver.FindElement(By.Id("Create"));
+        IWebElement btnSave => driver.FindElement(By.CssSelector(".btn"));
 
-
-        public void EnterProductDetails(Product product)
+        public void EditProduct(Product product)
         {
-            textname.SendKeys(product.Name);
+            textname.ClearAndEnterText(product.Name);
             textDescription.ClearAndEnterText(product.Description);
-            textPrice.SendKeys(product.Price.ToString());
-            ddlProductType.SelectDropDownByText(product.ProductType.ToString());
-            btnCreate.Submit();
-
+            textPrice.ClearAndEnterText(product.Price.ToString());
+            ddlProductType.ClearAndEnterText(product.ProductType.ToString());
+            btnSave.Click();
         }
     }
 }
