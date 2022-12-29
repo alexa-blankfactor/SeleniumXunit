@@ -35,8 +35,23 @@ namespace TestBdd.Steps
             scenarioContext.Set<Product>(product);
         }
 
+        [Given(@"I cleanup the following data")]
+        public void GivenIcleanupthefollowingdata(Table table)
+        {
+            var products = table.CreateSet<Product>();
+            foreach (var product in products)
+            {
+                var prod = productRepository.GetProductByName(product.Name);
+                if (prod != null)
+                {
+                    productRepository.DeleteProduct(product.Name);
+                }
+            }
+        }
 
 
-        
+
+
+
     }
 }

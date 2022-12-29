@@ -1,6 +1,12 @@
 Feature: Product 
     Test the product page functionality
 
+Background: Clean data
+    Given I cleanup the following data
+        | Name       | Description        | Price | ProductType |
+        | Headphones | Noise cancellation | 300   | PERIPHARALS |
+        | Monitor    | HD resolution monitor | 500   | PERIPHARALS |
+
 Scenario: Create product and verify the details
     Given I click thew product menu
     And I click the "Create" link
