@@ -1,0 +1,8 @@
+﻿{
+  "$schema": "http://specflow.org/specflow-config.json",
+  "stepAssemblies": [
+    { "assembly": "Allure.SpecFlowPlugin" }
+  ]
+
+}
+

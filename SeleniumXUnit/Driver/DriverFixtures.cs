@@ -2,6 +2,10 @@
 using Autofac;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Safari;
 using SeleniumXUnit.Driver;
 using SeleniumXUnit.Setting;
 using WebDriverManager;
@@ -11,6 +15,7 @@ namespace SeleniumXUnit
 {
     public class DriverFixtures : IDriverFixtures,IDisposable
     {
+        
         IWebDriver driver;
         private readonly IBrowserDriver browserDriver;
         private readonly TestSetting testSetting;
@@ -19,7 +24,16 @@ namespace SeleniumXUnit
         {
             this.testSetting = testSetting;
             this.browserDriver = browserDriver;
-            driver = GetWebDriver();
+            if (testSetting.ExecutionType == ExecutionType.Local)
+            {
+                driver = GetWebDriver();
+            }
+            else
+            {
+                driver = new RemoteWebDriver(testSetting.SeleniumGridUrl, GetBrowserOption());
+            }
+            
+            
             driver.Navigate().GoToUrl(testSetting.ApplicationUrl);
         }
 
@@ -36,6 +50,35 @@ namespace SeleniumXUnit
             };
 
         }
+
+        private dynamic GetBrowserOption()
+        {
+            switch (testSetting.BrowserType)
+            {
+                case BrowserType.Firefox:
+                    {
+                        var firefoxOption = new FirefoxOptions();
+
+                        firefoxOption.AddAdditionalFirefoxOption("se:recordVideo", true);
+                        return firefoxOption;
+                    }
+                case BrowserType.Edge:
+                    return new EdgeOptions();
+                case BrowserType.Safari:
+                    return new SafariOptions();
+                case BrowserType.Chrome:
+                    {
+                        var chromeOption = new ChromeOptions();
+                        chromeOption.AddAdditionalOption("se:recordVideo", true);
+                        return chromeOption;
+                    }
+                default:
+                    return new ChromeOptions();
+
+            }
+        }
+
+
 
         public void Dispose()
         {

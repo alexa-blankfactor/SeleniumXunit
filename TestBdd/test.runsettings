@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+    <RunConfiguration>
+        <EnviromentVariables>
+            <ASPNETCORE_ENVIROMENT>remote</ASPNETCORE_ENVIROMENT>
+        </EnviromentVariables>
+    </RunConfiguration>
+</RunSettings>

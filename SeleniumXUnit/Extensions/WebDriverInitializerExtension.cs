@@ -17,8 +17,9 @@ namespace SeleniumXUnit.Driver
 
 		private static TestSetting ReadConfig()
 		{
+			var enviromentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 			var configFile = File.ReadAllText(Path.GetDirectoryName(
-				Assembly.GetExecutingAssembly().Location) + "/appsettings.json");
+				Assembly.GetExecutingAssembly().Location) + $"/appsettings.{enviromentName}.json");
 			var jsonSerializeOption = new JsonSerializerOptions()
 			{
 				PropertyNameCaseInsensitive = true

@@ -30,6 +30,8 @@ namespace SeleniumXUnit.Driver
 
 public enum BrowserType {
     Chrome,
-    Firefox
+    Firefox,
+    Safari,
+    Edge
 }
 
