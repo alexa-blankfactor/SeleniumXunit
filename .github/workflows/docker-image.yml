@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "specflow" ]
+  pull_request:
+    branches: [ "specflow" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Runing the script file
+      run: |
+        echo --Running Test ---
+        sh  ./scripts/run.sh
