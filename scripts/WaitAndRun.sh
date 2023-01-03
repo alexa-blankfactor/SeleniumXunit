@@ -13,3 +13,6 @@ until [ ]; do
 done 
 
 dotnet test --logger "console;verbosity=detailed"
+dotnet tool install --global Specflow.Plus.LivingDoc.CLI
+export PATH="$PATH:/root/.donet/tools"
+livingdoc test-assembly "/src/TestBdd/bin/Debug/net6.0/TestBdd.dll" -t "/src/TestBdd/bin/Debug/net6.0/TestExecution.json"
