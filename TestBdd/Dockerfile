@@ -16,4 +16,5 @@ RUN dotnet build "TestBdd.csproj" -c Release -o /app/build
 
 FROM build AS TestBdd
 WORKDIR "/src/TestBdd"
-CMD [ "dotnet","test" ]
+RUN ["chmod","+x","../scripts/WaitAndRun.sh"]
+ENTRYPOINT [ "../scripts/WaitAndRun.sh" ]
